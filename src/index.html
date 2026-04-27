@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#4F8EF7" />
+    <title>JeevanAid — Emergency Healthcare</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192.png">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0059ba",
+                        "primary-container": "#4F8EF7", // Using the light blue from designs
+                        "on-primary": "#ffffff",
+                        secondary: "#585f68",
+                        surface: "#FAFBFD",
+                        background: "#FAFBFD",
+                        "on-surface": "#191c22",
+                        "surface-container-low": "#f2f3fc",
+                        error: "#ba1a1a",
+                    },
+                    fontFamily: {
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "action": ["Lexend"],
+                        "label-caps": ["Lexend"],
+                    },
+                    spacing: {
+                        "container_padding": "24px",
+                        "stack_gap": "20px",
+                        "tap_target_min": "56px",
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md pb-[120px]">
+
+    <!-- APP HEADER -->
+    <header id="app-header" class="bg-surface border-b border-[#E6EAF2] sticky top-0 z-50 flex justify-between items-center w-full px-6 py-4 page-hidden">
+        <div class="flex items-center gap-3">
+            <button id="back-btn" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#EEF4FF] transition-colors hidden">
+                <span class="material-symbols-outlined text-slate-500">arrow_back</span>
+            </button>
+            <div id="user-avatar" class="w-10 h-10 rounded-full border-2 border-[#4F8EF7] hidden overflow-hidden bg-primary-container text-white flex items-center justify-center font-bold">
+                U
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight text-[#4F8EF7] font-h1" id="header-title">JeevanAid</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="connection-status" class="bg-[#EEF4FF] px-3 py-1 rounded-full flex items-center gap-2 transition-colors duration-300">
+                <span class="material-symbols-outlined text-[16px] text-[#4F8EF7]" id="connection-icon">wifi</span>
+                <span class="font-label-caps text-[12px] text-[#4F8EF7]" id="connection-text">ONLINE</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- VIEWS CONTAINER -->
+    <main id="app-content" class="w-full">
+        
+        <!-- LOGIN VIEW -->
+        <div id="view-login" class="page w-full max-w-md mx-auto px-container_padding pt-12">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold tracking-tight text-[#4F8EF7] font-h1 mb-2">JeevanAid</h1>
+                <p class="text-secondary">Your Emergency Health Companion</p>
+            </div>
+            
+            <form id="login-form" class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] flex flex-col gap-5">
+                <h2 class="font-h2 text-xl text-center">Create Account / Login</h2>
+                
+                <div>
+                    <label class="block text-sm font-label-caps text-secondary mb-1">Full Name</label>
+                    <input type="text" id="login-name" required class="w-full h-tap_target_min bg-surface border border-[#E6EAF2] rounded-xl px-4 focus:ring-2 focus:ring-[#4F8EF7] outline-none" placeholder="Enter your name">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-label-caps text-secondary mb-1">Email</label>
+                    <input type="email" id="login-email" required class="w-full h-tap_target_min bg-surface border border-[#E6EAF2] rounded-xl px-4 focus:ring-2 focus:ring-[#4F8EF7] outline-none" placeholder="Enter your email">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-label-caps text-secondary mb-1">Password</label>
+                    <input type="password" id="login-password" required class="w-full h-tap_target_min bg-surface border border-[#E6EAF2] rounded-xl px-4 focus:ring-2 focus:ring-[#4F8EF7] outline-none" placeholder="Enter password">
+                </div>
+                
+                <button type="submit" class="w-full h-tap_target_min bg-primary-container text-white font-action rounded-xl mt-2 ambient-shadow active:scale-95 transition-all">
+                    Get Started
+                </button>
+                <div id="login-error" class="text-error text-sm text-center hidden"></div>
+            </form>
+        </div>
+
+        <!-- LANGUAGE VIEW -->
+        <div id="view-language" class="page page-hidden w-full max-w-md mx-auto px-container_padding pt-8">
+            <section class="text-center mb-8">
+                <h2 class="font-h1 text-h1 text-on-surface mb-2">Choose Language</h2>
+                <p class="text-secondary">Emergency guidance in your language</p>
+            </section>
+            
+            <div class="grid grid-cols-2 gap-5" id="language-grid">
+                <!-- Populated by JS -->
+                <button class="lang-option flex flex-col items-center justify-center h-32 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="en">
+                    <span class="text-2xl mb-2">English</span>
+                    <span class="font-label-caps text-secondary">English</span>
+                </button>
+                <button class="lang-option flex flex-col items-center justify-center h-32 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="hi">
+                    <span class="text-2xl mb-2">हिन्दी</span>
+                    <span class="font-label-caps text-secondary">Hindi</span>
+                </button>
+            </div>
+            
+            <div class="mt-12">
+                <button id="lang-continue-btn" class="w-full h-tap_target_min bg-primary-container text-white font-action rounded-xl ambient-shadow active:scale-95 transition-all">
+                    Continue
+                </button>
+            </div>
+        </div>
+
+        <!-- HOME VIEW -->
+        <div id="view-home" class="page page-hidden w-full max-w-2xl mx-auto px-6 pt-6">
+            
+            <!-- Online Smart Services -->
+            <section class="online-only mb-10">
+                <h2 class="font-h2 text-xl mb-4">Smart Health Services</h2>
+                <div class="flex gap-4 overflow-x-auto pb-4 snap-x hide-scrollbar">
+                    <button onclick="app.navigate('ai-diagnosis')" class="snap-start shrink-0 w-40 bg-white rounded-2xl p-4 ambient-shadow border border-[#E6EAF2] flex flex-col gap-3 active:scale-95 transition-transform text-left">
+                        <div class="w-10 h-10 rounded-full bg-[#EEF4FF] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[#4F8EF7]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-sm">AI Symptom</span>
+                            <span class="block text-secondary text-xs">Checker</span>
+                        </div>
+                    </button>
+                    
+                    <button onclick="app.navigate('tracker')" class="snap-start shrink-0 w-40 bg-white rounded-2xl p-4 ambient-shadow border border-[#E6EAF2] flex flex-col gap-3 active:scale-95 transition-transform text-left">
+                        <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-red-500" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-sm">Ambulance</span>
+                            <span class="block text-secondary text-xs">Live Tracker</span>
+                        </div>
+                    </button>
+                    
+                    <button class="snap-start shrink-0 w-40 bg-white rounded-2xl p-4 ambient-shadow border border-[#E6EAF2] flex flex-col gap-3 active:scale-95 transition-transform text-left">
+                        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-emerald-500" style="font-variation-settings: 'FILL' 1;">medication</span>
+                        </div>
+                        <div>
+                            <span class="block font-bold text-sm">Medicine</span>
+                            <span class="block text-secondary text-xs">Identifier</span>
+                        </div>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Hero Emergency Call -->
+            <section class="mb-8">
+                <div class="bg-[#FFF1F2] rounded-3xl p-6 border border-red-100 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="font-h1 text-2xl text-red-700 mb-2">What happened?</h2>
+                        <p class="text-red-900/70 mb-6 font-medium">Select an emergency below for immediate offline first-aid guidance.</p>
+                    </div>
+                    <div class="absolute -right-4 -bottom-4 opacity-10">
+                        <span class="material-symbols-outlined text-9xl text-red-500" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency Grid -->
+            <section>
+                <div id="emergencies-grid" class="grid grid-cols-3 md:grid-cols-4 gap-4">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+            
+        </div>
+
+        <!-- EMERGENCY DETAIL VIEW -->
+        <div id="view-emergency" class="page page-hidden w-full max-w-2xl mx-auto px-6 py-6">
+            <div class="flex items-center justify-between mb-2">
+                <span class="font-label-caps text-secondary uppercase" id="step-indicator">Step 1 of 5</span>
+            </div>
+            <div class="h-2 w-full bg-surface-container-low rounded-full overflow-hidden flex gap-1 mb-8" id="step-progress">
+                <!-- Populated by JS -->
+            </div>
+            
+            <div class="bg-white rounded-[20px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] overflow-hidden border border-[#E6EAF2] mb-6">
+                <div class="aspect-video w-full bg-surface-container-low flex items-center justify-center p-6 relative" id="emergency-icon-bg">
+                    <span class="material-symbols-outlined text-7xl" id="emergency-detail-icon"></span>
+                    <button id="audio-btn" class="absolute bottom-4 right-4 bg-white/80 backdrop-blur rounded-full p-3 shadow flex items-center justify-center active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined">volume_up</span>
+                    </button>
+                </div>
+                <div class="p-6 text-center">
+                    <h2 class="font-h2 text-xl text-on-surface mb-4" id="emergency-step-title">Keep patient still</h2>
+                    <p class="font-body-lg text-lg text-secondary" id="emergency-step-desc">
+                        Minimize movement to slow the spread of venom.
+                    </p>
+                </div>
+            </div>
+            
+            <div id="emergency-warning" class="hidden bg-[#FFF9EE] border border-[#FFE8BA] rounded-xl p-6 flex gap-4 items-start mb-6">
+                <div class="bg-[#FFE8BA] rounded-full p-2 flex-shrink-0">
+                    <span class="material-symbols-outlined text-[#B47419]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                </div>
+                <div>
+                    <h3 class="font-label-caps text-[#B47419] mb-1">CRITICAL WARNING</h3>
+                    <p class="font-body-md text-on-surface font-bold" id="emergency-dont"></p>
+                </div>
+            </div>
+            
+            <div class="flex gap-4">
+                <button id="prev-step-btn" class="flex-1 h-[56px] bg-[#EEF4FF] text-[#4F8EF7] rounded-xl font-action flex items-center justify-center gap-2 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">chevron_left</span> Previous
+                </button>
+                <button id="next-step-btn" class="flex-1 h-[56px] bg-primary-container text-white rounded-xl font-action flex items-center justify-center gap-2 active:scale-95 transition-all shadow-md">
+                    Next <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- AI DIAGNOSIS VIEW -->
+        <div id="view-ai-diagnosis" class="page page-hidden w-full max-w-2xl mx-auto px-6 py-6 online-only">
+            <section class="flex flex-col items-center text-center space-y-4 mb-8">
+                <div class="w-20 h-20 rounded-full bg-[#EEF4FF] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[#4F8EF7] text-4xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                </div>
+                <div class="space-y-2">
+                    <h2 class="font-h1 text-2xl text-on-surface">AI Health Assistant</h2>
+                    <p class="font-body-md text-slate-500 max-w-sm">Describe how you're feeling today.</p>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] mb-8">
+                <div class="flex flex-col space-y-6">
+                    <div class="relative">
+                        <textarea id="ai-input" class="w-full h-32 bg-surface border border-[#E6EAF2] rounded-xl p-5 font-body-md focus:ring-2 focus:ring-[#4F8EF7] outline-none resize-none" placeholder="E.g., I have a severe headache and fever since yesterday..."></textarea>
+                        <button id="ai-mic-btn" class="absolute bottom-4 right-4 w-12 h-12 bg-[#EEF4FF] text-[#4F8EF7] rounded-full flex items-center justify-center active:scale-90 transition-transform">
+                            <span class="material-symbols-outlined">mic</span>
+                        </button>
+                    </div>
+                    <button id="ai-submit-btn" class="w-full h-[56px] bg-primary-container text-white font-action rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                        <span>Analyse Symptoms</span>
+                        <span class="material-symbols-outlined">bolt</span>
+                    </button>
+                </div>
+            </section>
+            
+            <div id="ai-loading" class="hidden text-center py-8">
+                <div class="w-12 h-12 border-4 border-[#EEF4FF] border-t-[#4F8EF7] rounded-full animate-spin mx-auto mb-4"></div>
+                <p class="text-secondary font-medium">AI is analyzing your symptoms...</p>
+            </div>
+            
+            <section id="ai-results" class="space-y-6 hidden">
+                <h3 class="font-h2 text-xl">Preliminary Analysis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] space-y-3">
+                        <span class="font-label-caps text-secondary text-xs">LIKELY CONDITION</span>
+                        <h4 id="ai-condition-title" class="font-h2 text-xl text-on-surface"></h4>
+                        <p id="ai-condition-desc" class="text-slate-500 text-sm leading-relaxed"></p>
+                    </div>
+                    
+                    <div class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] flex flex-col justify-between" id="ai-urgency-card">
+                        <span class="font-label-caps text-secondary text-xs uppercase">Urgency Level</span>
+                        <div class="flex items-center gap-3 mt-4">
+                            <div class="w-3 h-12 bg-surface rounded-full overflow-hidden flex flex-col justify-end">
+                                <div id="ai-urgency-bar" class="w-full"></div>
+                            </div>
+                            <div>
+                                <span id="ai-urgency-label" class="font-bold text-xl block"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="md:col-span-2 bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2]">
+                        <h4 class="font-h2 text-lg mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-emerald-500">fact_check</span> Recommended Actions
+                        </h4>
+                        <ul id="ai-actions-list" class="space-y-4">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- AMBULANCE TRACKER VIEW -->
+        <div id="view-tracker" class="page page-hidden w-full relative h-[calc(100vh-180px)] online-only">
+            <!-- Map Container -->
+            <div id="tracker-map" class="absolute inset-0 z-0"></div>
+            
+            <div class="absolute bottom-4 left-4 right-4 z-40 max-w-lg mx-auto">
+                <div class="bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] border border-[#E6EAF2] p-6 flex flex-col gap-6">
+                    <div class="flex justify-between items-start">
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-secondary text-[12px] uppercase">Arriving In</span>
+                            <div class="flex items-baseline gap-2">
+                                <span id="tracker-eta" class="text-3xl font-bold text-[#4F8EF7] font-h1">--</span>
+                                <span class="text-lg font-bold text-[#4F8EF7]">mins</span>
+                            </div>
+                        </div>
+                        <div class="bg-[#EEF4FF] px-4 py-3 rounded-2xl text-center">
+                            <span class="block text-[12px] font-bold text-[#4F8EF7]">Status</span>
+                            <span id="tracker-status" class="text-sm font-bold text-[#4F8EF7]">Locating...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-4 bg-surface rounded-2xl border border-[#E6EAF2]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-[#EEF4FF] flex items-center justify-center text-[#4F8EF7]">
+                                <span class="material-symbols-outlined">person</span>
+                            </div>
+                            <div>
+                                <p class="font-h2 text-[16px]">Ambulance Driver</p>
+                                <p class="text-[12px] text-secondary">Unit 108-A</p>
+                            </div>
+                        </div>
+                        <a href="tel:108" class="w-12 h-12 bg-primary-container text-white rounded-full flex items-center justify-center active:scale-90 transition-transform shadow-md">
+                            <span class="material-symbols-outlined">call</span>
+                        </a>
+                    </div>
+                    
+                    <button class="w-full h-[56px] bg-primary-container text-white font-action rounded-2xl flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-md">
+                        <span class="material-symbols-outlined">share_location</span> Share Tracking Link
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VAULT VIEW -->
+        <div id="view-vault" class="page page-hidden w-full max-w-4xl mx-auto px-6 py-6">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="font-h1 text-2xl text-on-surface">Family Health Vault</h2>
+                    <p class="text-secondary text-sm">Offline-ready medical profiles</p>
+                </div>
+                <button onclick="vault.showAddModal()" class="bg-[#EEF4FF] text-[#4F8EF7] px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-1 active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-[18px]">add</span> Add
+                </button>
+            </div>
+            
+            <div id="vault-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated by JS -->
+            </div>
+            
+            <!-- Add Member Modal -->
+            <div id="vault-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-end sm:items-center justify-center">
+                <div class="bg-white w-full max-w-md sm:rounded-[24px] rounded-t-[24px] p-6 shadow-2xl animate-slide-up">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-h2 text-xl">Add Family Member</h3>
+                        <button onclick="vault.hideAddModal()" class="text-secondary"><span class="material-symbols-outlined">close</span></button>
+                    </div>
+                    <form id="vault-form" class="flex flex-col gap-4">
+                        <input type="text" id="v-name" placeholder="Full Name" required class="w-full h-[56px] bg-surface border border-[#E6EAF2] rounded-xl px-4 outline-none focus:ring-2 focus:ring-[#4F8EF7]">
+                        <input type="text" id="v-relation" placeholder="Relation (e.g., Mother)" required class="w-full h-[56px] bg-surface border border-[#E6EAF2] rounded-xl px-4 outline-none focus:ring-2 focus:ring-[#4F8EF7]">
+                        <select id="v-blood" class="w-full h-[56px] bg-surface border border-[#E6EAF2] rounded-xl px-4 outline-none focus:ring-2 focus:ring-[#4F8EF7]">
+                            <option value="">Select Blood Group</option>
+                            <option value="A+">A+</option><option value="A-">A-</option>
+                            <option value="B+">B+</option><option value="B-">B-</option>
+                            <option value="O+">O+</option><option value="O-">O-</option>
+                            <option value="AB+">AB+</option><option value="AB-">AB-</option>
+                        </select>
+                        <input type="text" id="v-conditions" placeholder="Medical Conditions (comma separated)" class="w-full h-[56px] bg-surface border border-[#E6EAF2] rounded-xl px-4 outline-none focus:ring-2 focus:ring-[#4F8EF7]">
+                        <input type="text" id="v-allergies" placeholder="Allergies (comma separated)" class="w-full h-[56px] bg-surface border border-[#E6EAF2] rounded-xl px-4 outline-none focus:ring-2 focus:ring-[#4F8EF7]">
+                        <button type="submit" class="w-full h-[56px] bg-primary-container text-white font-action rounded-xl mt-2 active:scale-95 transition-transform">Save Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav id="bottom-nav" class="fixed bottom-[56px] left-0 w-full z-40 bg-white border-t border-[#E6EAF2] flex justify-around items-center px-4 py-2 pb-safe page-hidden">
+        <button onclick="app.navigate('home')" class="nav-item flex flex-col items-center justify-center text-[#4F8EF7] w-16" data-target="home">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_health</span>
+            <span class="font-['Manrope'] text-[11px] font-bold mt-1">Home</span>
+        </button>
+        <button onclick="app.navigate('vault')" class="nav-item flex flex-col items-center justify-center text-slate-400 w-16" data-target="vault">
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span class="font-['Manrope'] text-[11px] font-medium mt-1">Vault</span>
+        </button>
+        <button onclick="app.signOut()" class="nav-item flex flex-col items-center justify-center text-slate-400 w-16">
+            <span class="material-symbols-outlined">logout</span>
+            <span class="font-['Manrope'] text-[11px] font-medium mt-1">Logout</span>
+        </button>
+    </nav>
+
+    <!-- EMERGENCY FOOTER -->
+    <footer id="emergency-footer" class="fixed bottom-0 left-0 w-full h-[56px] z-50 bg-[#F26D6D] flex items-center justify-center shadow-lg active:bg-red-500 transition-colors">
+        <a href="tel:108" class="flex items-center gap-3 w-full h-full justify-center">
+            <span class="material-symbols-outlined text-white text-2xl" style="font-variation-settings: 'FILL' 1;">phone_in_talk</span>
+            <span class="font-action text-xl text-white tracking-widest uppercase font-bold">Call 108</span>
+        </a>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/emergencies.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/diagnosis.js"></script>
+    <script src="js/tracker.js"></script>
+    <script src="js/vault.js"></script>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.error('SW failed', err));
+            });
+        }
+    </script>
+</body>
+</html>

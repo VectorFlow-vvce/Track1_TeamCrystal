@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Lexend:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "secondary": "#585f68",
+                        "surface-container-highest": "#e1e2eb",
+                        "surface-container-low": "#f2f3fc",
+                        "on-surface": "#191c22",
+                        "outline": "#727784",
+                        "primary-fixed": "#d7e2ff",
+                        "on-background": "#191c22",
+                        "surface-tint": "#005bbf",
+                        "surface-variant": "#e1e2eb",
+                        "on-secondary-fixed": "#161c24",
+                        "background": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c1c7d1",
+                        "tertiary": "#a53437",
+                        "on-primary-fixed-variant": "#004492",
+                        "tertiary-container": "#c54c4d",
+                        "on-primary-container": "#fefcff",
+                        "on-secondary-container": "#5e656e",
+                        "surface-container-high": "#e7e8f1",
+                        "on-tertiary-container": "#fffbff",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-container": "#ecedf6",
+                        "on-primary-fixed": "#001a40",
+                        "primary-fixed-dim": "#acc7ff",
+                        "primary-container": "#2c72d9",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#410006",
+                        "surface-dim": "#d8d9e2",
+                        "secondary-container": "#dde3ee",
+                        "surface": "#f9f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#871e24",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c6d5",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#0059ba",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#acc7ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#414750",
+                        "on-surface-variant": "#424753",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#dde3ee",
+                        "tertiary-fixed-dim": "#ffb3b0",
+                        "inverse-surface": "#2e3037"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "unit": "8px",
+                        "tap_target_min": "56px",
+                        "stack_gap": "20px",
+                        "container_padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Manrope"],
+                        "action": ["Lexend"],
+                        "label-caps": ["Lexend"],
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "action": ["18px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "h1": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pulse-green {
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FAFBFD] font-body-md text-on-surface selection:bg-primary-fixed">
+<!-- Top App Bar -->
+<header class="bg-[#FAFBFD] dark:bg-slate-950 font-['Manrope'] antialiased border-b border-[#E6EAF2] dark:border-slate-800 shadow-none sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover" data-alt="clean professional headshot of a friendly male doctor in a bright clinical setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn1rqsN_vfGjB0O_fFRPs83EAtvF11lZzlqdK-zySZTptIOrN7-s4BT-qO1QAx8ioFip4h08IU4IHro2UWmMRR6gG01R7cmnaJ6igMCxTnOPOSSRs2Tzx00jg8oG3mz_EKhdNTnQs7zeVzr86ZUKSt3sy7Bajy1Ivx1VHIH1-HuIkbin7QMCrwxa4XZRDHsDWEqZC4GcsyH7Y5VBG8kT13pFn2NI0rrXWUEH3Pk8Gvo2njgR95vVudo5atXIzT6SyZSv4cQHzzjVVf"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#FAFBFD] rounded-full pulse-green"></span>
+</div>
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-[#4F8EF7] dark:text-blue-400 m-0">JeevanAid</h1>
+<div class="flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="font-label-caps text-[10px] text-green-600 uppercase tracking-wider">Online Active</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-500 hover:bg-[#EEF4FF] transition-colors">
+<span class="material-symbols-outlined" data-icon="wifi_off">wifi_off</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pb-[140px] px-container_padding space-y-stack_gap pt-6">
+<!-- Premium Health Status Banner -->
+<section class="relative overflow-hidden rounded-[20px] bg-gradient-to-br from-primary to-primary-container p-6 text-white shadow-[0px_10px_30px_rgba(79,142,247,0.15)]">
+<div class="relative z-10 space-y-2">
+<span class="font-label-caps text-[12px] opacity-80 uppercase">Morning, Dr. Sarah</span>
+<h2 class="font-h1 text-white text-[26px]">Your AI Health Hub is Live</h2>
+<p class="font-body-md text-white/80 text-[14px]">5 Critical alerts in your community need attention.</p>
+</div>
+<div class="absolute -right-8 -top-8 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+</section>
+<!-- Horizontal AI Smart Dashboard -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-h2 text-on-surface">AI Smart Services</h3>
+<span class="text-[#4F8EF7] font-label-caps text-xs">VIEW ALL</span>
+</div>
+<div class="flex overflow-x-auto gap-4 hide-scrollbar -mx-container_padding px-container_padding pb-4">
+<!-- AI Diagnosis Card -->
+<div class="flex-shrink-0 w-[240px] p-5 rounded-[20px] bg-[#EEF4FF] border border-primary-fixed-dim/20 shadow-[0px_10px_30px_rgba(79,142,247,0.04)] group hover:scale-[1.02] transition-transform cursor-pointer" onclick="window.location.href='../ai_symptom_checker/code.html'">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 text-[#4F8EF7]">
+<span class="material-symbols-outlined text-[28px]" data-icon="psychology">psychology</span>
+</div>
+<h4 class="font-h2 text-[18px] mb-1">AI Diagnosis</h4>
+<p class="text-secondary text-[13px] leading-snug">Instant symptoms analysis with ML models.</p>
+</div>
+<!-- Doctor On Call -->
+<div class="flex-shrink-0 w-[240px] p-5 rounded-[20px] bg-[#E0F2F1] border border-teal-100 shadow-[0px_10px_30px_rgba(79,142,247,0.04)] hover:scale-[1.02] transition-transform cursor-pointer" onclick="window.location.href='../doctor_on_call/code.html'">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 text-teal-600">
+<span class="material-symbols-outlined text-[28px]" data-icon="video_chat">video_chat</span>
+</div>
+<h4 class="font-h2 text-[18px] mb-1">Doctor On Call</h4>
+<p class="text-secondary text-[13px] leading-snug">Connect to specialists in under 60 seconds.</p>
+</div>
+<!-- Medicine Scanner -->
+<div class="flex-shrink-0 w-[240px] p-5 rounded-[20px] bg-[#FFF8E1] border border-amber-100 shadow-[0px_10px_30px_rgba(79,142,247,0.04)] hover:scale-[1.02] transition-transform cursor-pointer" onclick="window.location.href='../medicine_identifier/code.html'">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 text-amber-600">
+<span class="material-symbols-outlined text-[28px]" data-icon="barcode_scanner">barcode_scanner</span>
+</div>
+<h4 class="font-h2 text-[18px] mb-1">Medicine Scanner</h4>
+<p class="text-secondary text-[13px] leading-snug">Verify authenticity and check interactions.</p>
+</div>
+<!-- Live Tracker -->
+<div class="flex-shrink-0 w-[240px] p-5 rounded-[20px] bg-[#FFEBEE] border border-coral-100 shadow-[0px_10px_30px_rgba(79,142,247,0.04)] hover:scale-[1.02] transition-transform cursor-pointer" onclick="window.location.href='../live_ambulance_tracker/code.html'">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 text-red-500">
+<span class="material-symbols-outlined text-[28px]" data-icon="location_on">location_on</span>
+</div>
+<h4 class="font-h2 text-[18px] mb-1">Ambulance Tracker</h4>
+<p class="text-secondary text-[13px] leading-snug">Real-time GPS tracking for emergencies.</p>
+</div>
+<!-- Hospital Beds -->
+<div class="flex-shrink-0 w-[240px] p-5 rounded-[20px] bg-[#E8F5E9] border border-green-100 shadow-[0px_10px_30px_rgba(79,142,247,0.04)] hover:scale-[1.02] transition-transform cursor-pointer" onclick="window.location.href='../nearest_clinic/code.html'">
+<div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 text-green-600">
+<span class="material-symbols-outlined text-[28px]" data-icon="bed">bed</span>
+</div>
+<h4 class="font-h2 text-[18px] mb-1">Hospital Beds</h4>
+<p class="text-secondary text-[13px] leading-snug">Live availability in nearest trauma centers.</p>
+</div>
+</div>
+</section>
+<!-- Emergency Action Grid -->
+<section class="space-y-4">
+<h3 class="font-h2 text-on-surface">Emergency Response</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center p-6 bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] border border-[#E6EAF2] hover:bg-[#EEF4FF] transition-all group" onclick="window.location.href='../offline_emergency_home/code.html'">
+<div class="w-14 h-14 rounded-full bg-[#FFDAD6] flex items-center justify-center mb-3 text-red-600 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="potted_plant">potted_plant</span>
+</div>
+<span class="font-action text-[14px]">First Aid Guide</span>
+</button>
+<button class="flex flex-col items-center justify-center p-6 bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] border border-[#E6EAF2] hover:bg-[#EEF4FF] transition-all group" onclick="window.location.href='../nearest_clinic/code.html'">
+<div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-3 text-blue-600 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+<span class="font-action text-[14px]">Find Donor</span>
+</button>
+</div>
+</section>
+<!-- Premium Dash Cards -->
+<section class="space-y-4">
+<div class="flex items-center p-5 bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] border border-[#E6EAF2] cursor-pointer" onclick="window.location.href='../family_health_vault/code.html'">
+<div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mr-4">
+<span class="material-symbols-outlined" data-icon="folder_shared">folder_shared</span>
+</div>
+<div class="flex-1">
+<h4 class="font-h2 text-[16px]">Family Health Vault</h4>
+<p class="text-secondary text-[12px]">Securely synced with 4 members</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+<div class="flex items-center p-5 bg-white rounded-[24px] shadow-[0px_10px_30px_rgba(79,142,247,0.08)] border border-[#E6EAF2]">
+<div class="w-12 h-12 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 mr-4">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div class="flex-1">
+<h4 class="font-h2 text-[16px]">Community Alerts</h4>
+<p class="text-secondary text-[12px]">Local health advisory active</p>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-[56px] left-0 w-full z-40 flex justify-around items-center px-4 py-2 bg-white dark:bg-slate-900 border-t border-[#E6EAF2] dark:border-slate-800 shadow-[0px_-10px_30px_rgba(79,142,247,0.08)] font-['Manrope'] text-[12px] font-medium">
+<a class="flex flex-col items-center justify-center text-[#4F8EF7] bg-[#EEF4FF] dark:bg-blue-900/20 rounded-xl px-4 py-1 active:scale-95 transition-transform" href="../online_smart_home/code.html">
+<span class="material-symbols-outlined" data-icon="home_health">home_health</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#4F8EF7] active:scale-95 transition-transform" href="../offline_emergency_home/code.html">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Guides</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#4F8EF7] active:scale-95 transition-transform" href="../family_health_vault/code.html">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Vault</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-[#4F8EF7] active:scale-95 transition-transform" href="../onboarding_language_selection/code.html">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+<!-- Emergency Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-50 h-[56px] bg-[#F26D6D] flex items-center justify-center hover:bg-red-600 transition-all active:scale-90 duration-75">
+<a class="flex items-center gap-3 text-white font-['Lexend'] font-bold text-xl uppercase tracking-widest" href="tel:108">
+<span class="material-symbols-outlined" data-icon="emergency_share" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+            CALL 108 - EMERGENCY
+        </a>
+</footer>
+</body></html>

@@ -1,0 +1,378 @@
+================================================================
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+JeevanAid — Hybrid PWA for Emergency & Everyday Healthcare
+================================================================
+
+----------------------------------------------------------------
+1. DOCUMENT OVERVIEW
+----------------------------------------------------------------
+Product Name      : JeevanAid
+Version           : v2.0 (Hybrid Edition)
+Document Type     : Product Requirements Document
+Track             : Vibeathon 2026 — Track 1: Open Innovation
+Domain            : Healthcare
+Platform          : Hybrid Progressive Web App (PWA)
+Status            : Hackathon MVP — In Development
+Owner             : Team JeevanAid
+
+----------------------------------------------------------------
+2. EXECUTIVE SUMMARY
+----------------------------------------------------------------
+JeevanAid is a Hybrid Progressive Web App that bridges the
+critical gap between when a medical emergency occurs and when
+professional help arrives. It functions as a fully offline
+first-aid responder in low-connectivity areas, and unlocks a
+powerful AI-driven health platform when online — all in one
+installable browser app, no app store required.
+
+Tagline:
+"When the ambulance is an hour away, JeevanAid puts a trained
+first-responder in every pocket."
+
+Pitch Line:
+"Offline when you need it most, intelligent when you have signal.
+One app. Every emergency. Every Indian."
+
+----------------------------------------------------------------
+3. PROBLEM STATEMENT
+----------------------------------------------------------------
+3.1 Core Problem
+Preventable deaths and health deterioration caused by incorrect,
+absent, or inaccessible medical guidance — both in emergencies
+and everyday health management — across rural and semi-urban India.
+
+3.2 Problem Context
+- 600,000+ villages in India with 30–60 min ambulance response
+- 1.5 lakh+ accidental deaths/year (NCRB 2022)
+- 65% of India has no doctor within 5km
+- 800M+ people lack trained first-responders in critical moments
+
+3.3 Why Existing Solutions Fail
+- English-only health apps exclude regional users
+- Internet-dependent tools are useless in real emergencies
+- Fragmented apps cause cognitive overload during panic
+- Text-heavy UX inaccessible to low-literacy users
+- No DO-NOT warnings → wrong actions kill (e.g., toothpaste on burns)
+
+----------------------------------------------------------------
+4. GOALS & OBJECTIVES
+----------------------------------------------------------------
+4.1 Product Goals
+1. Provide life-saving first-aid guidance in 100% offline mode
+2. Deliver AI-powered health intelligence when online
+3. Eliminate language barriers (6+ Indian languages)
+4. Achieve panic-proof UX (icon-first, audio-first)
+5. Enable zero-friction distribution via WhatsApp link
+
+4.2 Success Metrics (KPIs)
+- First-aid module load time (offline)  : < 2 seconds
+- Language coverage at launch           : 6 languages
+- Time to reach emergency guide         : <= 2 taps
+- PWA install completion rate           : > 70%
+- Offline functionality coverage        : 100% of core features
+- Lives potentially saved (10% reduction): 15,000/year
+
+----------------------------------------------------------------
+5. TARGET USERS
+----------------------------------------------------------------
+5.1 Primary Persona — Emergency User (Offline)
+Name      : Ramesh, 38, farmer
+Location  : Rural Karnataka village
+Device    : Entry-level Android (2GB RAM)
+Language  : Kannada (no English)
+Context   : Family member has snake bite at 11 PM, no signal
+Need      : Immediate, clear, audio-guided first-aid
+
+5.2 Secondary Persona — Smart User (Online)
+Name      : Priya, 29, schoolteacher
+Location  : Tier-3 town in Maharashtra
+Device    : Mid-range smartphone, intermittent 4G
+Language  : Marathi + Hindi
+Need      : Family health records, medicine ID, doctor consult
+
+5.3 Tertiary Persona — ASHA Worker
+Name      : Sunita, 45, community health worker
+Need      : Replace paper registers, log visits, track immunizations
+
+----------------------------------------------------------------
+6. USER STORIES
+----------------------------------------------------------------
+OFFLINE STORIES
+- As a bystander, I want to tap an emergency icon and see
+  step-by-step illustrated guidance in my language so I can act
+  without panic.
+- As a caregiver, I want audio narration of first-aid steps
+  because I can't read while performing CPR.
+- As a rural user, I want to find the nearest clinic from a
+  cached map even with zero internet.
+- As a family member, I want a DO NOT warning visible so I
+  don't accidentally harm the patient.
+
+ONLINE STORIES
+- As a patient family, I want to see the live ambulance location
+  and ETA so I know help is coming.
+- As a caregiver, I want to scan a medicine packet and get
+  details in my regional language.
+- As an urban user, I want to consult a verified MBBS doctor
+  via video in 1 tap.
+- As a family head, I want to store family medical records and
+  share them as PDF in emergencies.
+
+----------------------------------------------------------------
+7. FEATURE REQUIREMENTS
+----------------------------------------------------------------
+
+7.1 OFFLINE MODE (Core — Always Available)
+
+F1. EMERGENCY FIRST-AID GUIDE  [P0]
+- 12 emergencies: Snake Bite, Seizure, Choking, Burns, Heart
+  Attack, Drowning, Fracture, Severe Bleeding, Unconsciousness,
+  Allergic Reaction, Electric Shock, Heat Stroke
+- Large icon-based selector grid (3x4 layout)
+- Per emergency: illustrated steps + audio + looping video
+- Bold red DO NOT warning boxes for myth prevention
+
+F2. MULTILINGUAL SUPPORT (OFFLINE)  [P0]
+- Languages: Hindi, Kannada, Tamil, Telugu, Marathi, Bengali
+- Pre-cached at install
+- Language selector on first launch (persistent)
+
+F3. ONE-TAP 108 EMERGENCY CALL  [P0]
+- Persistent floating sticky button on every screen
+- High-contrast red CTA, accessible in panic state
+
+F4. NEAREST CLINIC FINDER (OFFLINE)  [P1]
+- Cached OpenStreetMap tiles
+- Pre-loaded PHC/hospital database
+- Top 3 facilities with distance + tap-to-call
+
+F5. BASIC SYMPTOM TRIAGE (OFFLINE)  [P1]
+- Yes/No decision tree
+- Outputs urgency category → routes to first-aid module or 108
+
+F6. CAREGIVER DAILY GUIDE  [P2]
+- Home management: Diabetes, Hypertension, TB, Cardiac
+- Medication reminders + visual pill identifier
+
+F7. ASHA WORKER MODE  [P2]
+- Patient visit log
+- Immunization tracker
+- Replaces paper registers
+
+
+7.2 ONLINE MODE (Smart Features)
+
+F8. AI SYMPTOM DIAGNOSIS  [P0]
+- Multilingual symptom input (text/voice)
+- LLM-powered analysis
+- Returns: likely condition + urgency (Red/Amber/Green) + action
+- Color-coded card UI
+
+F9. LIVE 108 AMBULANCE TRACKER  [P0]
+- Real-time map location
+- Live ETA countdown
+- Animated pulse indicator
+- "Help is X minutes away" messaging
+
+F10. TELEMEDICINE — DOCTOR ON CALL  [P1]
+- 1-tap video/chat with verified MBBS doctor
+- Booking card: symptom + language preference
+- Live queue position
+- Callback option
+
+F11. AI MEDICINE IDENTIFIER  [P1]
+- Camera input → CV API analysis
+- Returns: medicine name, dosage, purpose, side effects
+- Output in regional language
+
+F12. LIVE HOSPITAL BED AVAILABILITY  [P2]
+- Real-time emergency bed status
+- Green/Red color coding
+- NHA Ayushman Bharat API integration
+
+F13. MULTILINGUAL AI HEALTH CHATBOT  [P1]
+- Conversational AI in Indian languages
+- Persistent chat history
+- Auto-escalation to 108 on life-threatening intent
+
+F14. FAMILY HEALTH RECORDS VAULT  [P1]
+- Per-member: blood group, allergies, conditions, prescriptions
+- One-tap PDF share
+- Encrypted cloud sync
+
+F15. COMMUNITY DISEASE ALERT SYSTEM  [P2]
+- Crowdsourced + government feed pattern detection
+- Push notifications with prevention steps in local language
+
+F16. POST-EMERGENCY FOLLOW-UP  [P2]
+- 48-hour recovery guide
+- Medication reminders
+- Warning signs alerts
+- Follow-up clinic locator
+
+----------------------------------------------------------------
+8. PRIORITY MATRIX (MoSCoW)
+----------------------------------------------------------------
+MUST HAVE   (P0) : F1, F2, F3, F8, F9
+SHOULD HAVE (P1) : F4, F5, F10, F11, F13, F14
+COULD HAVE  (P2) : F6, F7, F12, F15, F16
+WON'T HAVE       : True offline AI diagnosis, 22-language coverage
+
+----------------------------------------------------------------
+9. USER FLOWS
+----------------------------------------------------------------
+
+9.1 OFFLINE EMERGENCY FLOW
+Open Browser
+   ↓
+Click PWA Link → Install (one-time)
+   ↓
+Select Language (one-time)
+   ↓
+Home Screen (Offline Badge visible)
+   ↓
+Tap Emergency Icon (e.g., Snake Bite)
+   ↓
+Visual Steps + Audio Narration Plays
+   ↓
+DO NOT warnings displayed
+   ↓
+Persistent 108 Button → One-tap Call
+
+
+9.2 ONLINE SMART FLOW
+App Detects Internet → Online Mode Badge Activates
+   ↓
+Home Upgrades with AI Dashboard Cards
+   ↓
+User Selects Feature (e.g., AI Diagnosis)
+   ↓
+Voice/Text Input in Local Language
+   ↓
+AI Returns Diagnosis Card (Red/Amber/Green)
+   ↓
+Optional: Tap "Talk to Doctor" → Video Call
+   ↓
+Optional: Track 108 Ambulance Live
+
+----------------------------------------------------------------
+10. TECHNICAL REQUIREMENTS
+----------------------------------------------------------------
+
+10.1 STACK OVERVIEW
+Frontend         : HTML5, CSS3, JavaScript (PWA)
+Offline Engine   : Service Worker + Cache API + IndexedDB
+Maps             : Leaflet.js (offline tiles + online tracking)
+AI               : LLM API (multilingual diagnosis & chat)
+Computer Vision  : Medicine ID API (online only)
+Video Consult    : WebRTC
+Backend          : Node.js + Firebase
+Auth             : Firebase Auth (phone OTP)
+Dev Environment  : Kiro (mandatory for Track 1)
+
+10.2 PERFORMANCE REQUIREMENTS
+- First load (online)        : < 5 seconds on 3G
+- Subsequent loads (offline) : < 2 seconds
+- App size (cached)          : < 25 MB
+- Min RAM                    : 1.5 GB Android device
+- Browser support            : Chrome 90+, Edge 90+, Samsung Internet
+
+10.3 SECURITY & COMPLIANCE
+- Health data encrypted at rest (AES-256)
+- HTTPS-only (PWA requirement)
+- HIPAA-aligned data handling
+- Aadhaar-free (no sensitive ID storage)
+- Clear medical disclaimers on every AI output
+
+----------------------------------------------------------------
+11. UX/UI PRINCIPLES
+----------------------------------------------------------------
+1. Panic-Proof Design   — Max 2 taps to any emergency
+2. Icon-First           — Visual symbols dominate text
+3. Audio-First          — Every action narratable in local language
+4. High Contrast        — Readable in sunlight, on cracked screens
+5. Large Touch Targets  — Minimum 64dp for emergency buttons
+6. DO NOT Warnings      — Bold red boxes prevent harmful myths
+7. One-Hand Operation   — Critical actions reachable with thumb
+
+----------------------------------------------------------------
+12. IMPACT & SCALE
+----------------------------------------------------------------
+
+12.1 BENEFICIARIES
+- 800M+ rural and semi-urban Indians
+- 1M+ ASHA workers and CHVs
+- Families managing elderly/chronically ill
+- Urban users wanting multilingual health AI
+- Travelers in low-connectivity areas
+
+12.2 SCALE STRATEGY
+- WhatsApp link distribution (zero app store friction)
+- Partnership: NHM, 108 Arogya Kavach, state health depts
+- ASHA program integration
+- 28 states, 22 languages roadmap
+
+----------------------------------------------------------------
+13. RISKS & MITIGATIONS
+----------------------------------------------------------------
+RISK                              | MITIGATION
+----------------------------------|-------------------------------
+Incorrect guidance causes harm    | Doctor validation + disclaimers
+AI API costs at scale             | Freemium + NGO partnerships
+Outdated offline map cache        | Auto-refresh on connectivity
+Language translation accuracy     | Human-validated medical content
+Liability concerns                | Clear non-substitution disclaimers
+
+----------------------------------------------------------------
+14. ROADMAP
+----------------------------------------------------------------
+
+PHASE 1 — HACKATHON MVP (Current)
+- Offline core (F1, F2, F3)
+- AI Diagnosis prototype (F8)
+- Live ambulance UI mock (F9)
+- 2 languages (Hindi + 1 regional)
+
+PHASE 2 — POST-HACKATHON (3 months)
+- All 6 languages live
+- F4, F5, F10, F11, F14
+- Doctor partnership pilot
+
+PHASE 3 — SCALE (6–12 months)
+- F12, F13, F15, F16
+- NHM partnership
+- 22-language expansion
+- 1M user target
+
+----------------------------------------------------------------
+15. COMPETITIVE DIFFERENTIATION
+----------------------------------------------------------------
+CAPABILITY              | Practo | 1mg | Apollo 24/7 | JeevanAid
+------------------------|--------|-----|-------------|----------
+Works fully offline     |   No   | No  |     No      |   YES
+Indian languages (6+)   | Partial| No  |   Partial   |   YES
+Emergency first-aid     |   No   | No  |     No      |   YES
+Live 108 tracking       |   No   | No  |     No      |   YES
+Audio-first UX          |   No   | No  |     No      |   YES
+No app store needed     |   No   | No  |     No      |   YES (PWA)
+
+----------------------------------------------------------------
+16. APPENDIX
+----------------------------------------------------------------
+
+A. GLOSSARY
+PWA  — Progressive Web App
+PHC  — Primary Health Center
+ASHA — Accredited Social Health Activist
+NHM  — National Health Mission
+NHA  — National Health Authority
+
+B. REFERENCES
+- NCRB Accidental Deaths Report 2022
+- WHO India Health Profile
+- NHM Rural Health Statistics
+
+================================================================
+END OF DOCUMENT
+Vibeathon 2026 | Track 1: Open Innovation | Domain: Healthcare
+================================================================

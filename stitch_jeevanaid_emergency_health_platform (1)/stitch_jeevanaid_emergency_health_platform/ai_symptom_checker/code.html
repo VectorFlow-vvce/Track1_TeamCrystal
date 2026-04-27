@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JeevanAid - AI Health Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "secondary": "#585f68",
+                    "surface-container-highest": "#e1e2eb",
+                    "surface-container-low": "#f2f3fc",
+                    "on-surface": "#191c22",
+                    "outline": "#727784",
+                    "primary-fixed": "#d7e2ff",
+                    "on-background": "#191c22",
+                    "surface-tint": "#005bbf",
+                    "surface-variant": "#e1e2eb",
+                    "on-secondary-fixed": "#161c24",
+                    "background": "#f9f9ff",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c1c7d1",
+                    "tertiary": "#a53437",
+                    "on-primary-fixed-variant": "#004492",
+                    "tertiary-container": "#c54c4d",
+                    "on-primary-container": "#fefcff",
+                    "on-secondary-container": "#5e656e",
+                    "surface-container-high": "#e7e8f1",
+                    "on-tertiary-container": "#fffbff",
+                    "inverse-on-surface": "#eff0f9",
+                    "surface-container": "#ecedf6",
+                    "on-primary-fixed": "#001a40",
+                    "primary-fixed-dim": "#acc7ff",
+                    "primary-container": "#2c72d9",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#410006",
+                    "surface-dim": "#d8d9e2",
+                    "secondary-container": "#dde3ee",
+                    "surface": "#f9f9ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#871e24",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c2c6d5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#0059ba",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#acc7ff",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary-fixed-variant": "#414750",
+                    "on-surface-variant": "#424753",
+                    "tertiary-fixed": "#ffdad8",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#dde3ee",
+                    "tertiary-fixed-dim": "#ffb3b0",
+                    "inverse-surface": "#2e3037"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "unit": "8px",
+                    "tap_target_min": "56px",
+                    "stack_gap": "20px",
+                    "container_padding": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Manrope"],
+                    "action": ["Lexend"],
+                    "label-caps": ["Lexend"],
+                    "h2": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "action": ["18px", {"lineHeight": "1", "fontWeight": "500"}],
+                    "label-caps": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "h1": ["30px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["18px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .ambient-shadow {
+            box-shadow: 0px 10px 30px rgba(79, 142, 247, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#FAFBFD] font-body-md text-on-surface min-h-screen pb-40">
+<!-- TopAppBar -->
+<header class="bg-[#FAFBFD] dark:bg-slate-950 font-['Manrope'] antialiased border-b border-[#E6EAF2] dark:border-slate-800 flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional male doctor portrait with friendly expression in clean clinical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEdlhu9yvWSjp3z4AY-X19K1YhBi16-RlEHrRYghLs_SHswUcX558tUuLnto4s_yf-n5keSqHEIWZueJ754XBR3KJg3BZ1CA9Hkgy3WZIXy7fC-DuKm6NF_hd9kha3AKLocme9zM6ab-prCQh3erS5HUcezuTbKIT6yqdsM3QdlTs64lwcYJLE4cVYpGlXxv4gBkn_XyRtl4gPCK_0suvXeQB96ZffoRqazjoEX4iBIXsJTCY43HOndvNzOIZJJdEXLeb8FjAZdm4e"/>
+</div>
+<h1 class="text-2xl font-bold tracking-tight text-[#4F8EF7] dark:text-blue-400">JeevanAid</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500" data-icon="wifi_off">wifi_off</span>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-6 pt-8 space-y-8">
+<!-- AI Greeting Section -->
+<section class="flex flex-col items-center text-center space-y-4">
+<div class="w-20 h-20 rounded-full bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#4F8EF7] text-4xl" data-icon="smart_toy" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="space-y-2">
+<h2 class="font-h1 text-h1 text-on-surface">AI Health Assistant</h2>
+<p class="font-body-md text-slate-500 max-w-sm">Please describe how you're feeling today in your own words.</p>
+</div>
+</section>
+<!-- Conversational Input Card -->
+<section class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2]">
+<div class="flex flex-col space-y-6">
+<div class="relative">
+<textarea class="w-full h-40 bg-[#FAFBFD] border border-[#E6EAF2] rounded-xl p-5 font-body-md focus:ring-2 focus:ring-[#4F8EF7] focus:border-transparent transition-all resize-none outline-none" placeholder="Describe symptoms..."></textarea>
+<button class="absolute bottom-4 right-4 w-12 h-12 bg-primary-container text-white rounded-full flex items-center justify-center hover:bg-primary-container/90 transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+</div>
+<button class="w-full h-[56px] bg-[#4F8EF7] text-white font-action text-action rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span>Analyse Symptoms</span>
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</button>
+</div>
+</section>
+<!-- Results Analysis (Bento Style) -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-h2 text-h2 text-on-surface">Preliminary Analysis</h3>
+<div class="bg-[#EEF4FF] px-3 py-1 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-label-caps text-[12px] text-[#4F8EF7]">DEVICE SYNCED</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Condition Card -->
+<div class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] space-y-3">
+<span class="font-label-caps text-secondary text-xs">LIKELY CONDITION</span>
+<h4 class="font-h2 text-xl text-on-surface">Acute Rhinosinusitis</h4>
+<p class="text-slate-500 text-sm leading-relaxed">Commonly known as a sinus infection, often caused by viral upper respiratory infections.</p>
+</div>
+<!-- Urgency Card -->
+<div class="bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2] flex flex-col justify-between">
+<span class="font-label-caps text-secondary text-xs uppercase">Urgency Level</span>
+<div class="flex items-center gap-3 mt-4">
+<div class="w-3 h-12 bg-[#EEF4FF] rounded-full overflow-hidden flex flex-col justify-end">
+<div class="bg-amber-400 h-2/3 w-full"></div>
+</div>
+<div>
+<span class="text-amber-600 font-bold text-xl block">Moderate</span>
+<span class="text-slate-400 text-xs">Self-care recommended</span>
+</div>
+</div>
+</div>
+<!-- Action Steps Card (Full Width) -->
+<div class="md:col-span-2 bg-white rounded-[20px] p-6 ambient-shadow border border-[#E6EAF2]">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-600" data-icon="fact_check">fact_check</span>
+</div>
+<h4 class="font-h2 text-lg text-on-surface">Recommended Actions</h4>
+</div>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-[#EEF4FF] text-[#4F8EF7] flex items-center justify-center flex-shrink-0 text-xs font-bold">1</div>
+<p class="text-slate-600">Rest and maintain high hydration levels for the next 48 hours.</p>
+</li>
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-[#EEF4FF] text-[#4F8EF7] flex items-center justify-center flex-shrink-0 text-xs font-bold">2</div>
+<p class="text-slate-600">Use saline nasal spray 2-3 times daily to relieve congestion.</p>
+</li>
+<li class="flex items-start gap-4">
+<div class="w-6 h-6 rounded-full bg-[#EEF4FF] text-[#4F8EF7] flex items-center justify-center flex-shrink-0 text-xs font-bold">3</div>
+<p class="text-slate-600">Monitor temperature; seek medical help if fever exceeds 102°F.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Contextual Help -->
+<section class="bg-[#EEF4FF] rounded-[20px] p-6 flex items-center gap-5">
+<img class="w-20 h-20 rounded-xl object-cover shadow-sm" data-alt="close-up of a high-tech digital thermometer and medical equipment in soft clean lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFPW9zbBiBZ7uDXKiXf1XwaPtD3jxuvIeEkLcC-ZI6bclqY4JLnHpCOm1BjdhuU3IyvCRcFwdmrGQfxG4OdPxKlG_xIKiyndnO5Wl3rvc8MsCM3xNQwfRIHvaQr4gUm7jTqz8cL1IFOHta9ndVVQjXzjo0_zaOaLdBXu2Bjs906LbKDniknctg-9Tam_YkNXQPD3JG5i8Ojt3hs4Ic6h0nN-hyAMsoWg3dBxALUZVbD4y_e0tcHG9mEOSP7_d-1_pFtz7g1Z4GxvzI"/>
+<div>
+<h4 class="font-h2 text-md text-[#4F8EF7]">Need a Doctor's opinion?</h4>
+<p class="text-slate-500 text-sm mb-3">Connect with a GP via video call in less than 15 minutes.</p>
+<button class="text-[#4F8EF7] font-bold text-sm flex items-center gap-1" onclick="window.location.href='../doctor_on_call/code.html'">
+                    Book Consultation <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-[56px] left-0 w-full z-40 bg-white dark:bg-slate-900 flex justify-around items-center px-4 py-2 border-t border-[#E6EAF2] dark:border-slate-800 shadow-[0px_-10px_30px_rgba(79,142,247,0.08)]">
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 font-['Manrope'] text-[12px] font-medium hover:text-[#4F8EF7] cursor-pointer" onclick="window.location.href='../online_smart_home/code.html'">
+<span class="material-symbols-outlined" data-icon="home_health">home_health</span>
+<span>Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#4F8EF7] bg-[#EEF4FF] dark:bg-blue-900/20 rounded-xl px-4 py-1 font-['Manrope'] text-[12px] font-bold cursor-pointer" onclick="window.location.href='../offline_emergency_home/code.html'">
+<span class="material-symbols-outlined" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span>Guides</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 font-['Manrope'] text-[12px] font-medium hover:text-[#4F8EF7] cursor-pointer" onclick="window.location.href='../family_health_vault/code.html'">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Vault</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 font-['Manrope'] text-[12px] font-medium hover:text-[#4F8EF7] cursor-pointer" onclick="window.location.href='../onboarding_language_selection/code.html'">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</div>
+</nav>
+<!-- Sticky Emergency Footer -->
+<footer class="fixed bottom-0 left-0 w-full h-[56px] z-50 bg-[#F26D6D] flex items-center justify-center shadow-lg hover:bg-red-600 transition-all active:scale-95 cursor-pointer">
+<a class="flex items-center gap-3" href="tel:108">
+<span class="material-symbols-outlined text-white text-2xl" data-icon="call" style="font-variation-settings: 'FILL' 1;">call</span>
+<span class="font-['Lexend'] font-bold text-xl uppercase tracking-widest text-white">CALL 108 - EMERGENCY</span>
+</a>
+</footer>
+</body></html>

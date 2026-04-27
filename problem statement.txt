@@ -1,0 +1,342 @@
+================================================================
+VIBEATHON 2026 — TRACK 1: OPEN INNOVATION
+DOMAIN: HEALTHCARE
+TEAM SHEET — ROUND 1 EVALUATION CANVAS
+================================================================
+
+PROJECT NAME: JeevanAid
+Tagline: "When the ambulance is an hour away, JeevanAid puts a
+          trained first-responder in every pocket."
+
+Mode: Hybrid PWA — Full offline core + powerful online features
+      when internet is available. One app. Two modes. Always ready.
+
+================================================================
+01. PROBLEM IDENTIFICATION
+================================================================
+
+Every year, thousands of Indians die not from their medical
+emergency — but from the gap between when it happens and when
+professional help arrives.
+
+India has over 600,000 villages. The average ambulance response
+time in rural areas is 30–60 minutes. In that window, the people
+present — a family member, a neighbor, a passerby — are the only
+line of defence. They have no training, no guidance, and often
+panic or take the wrong action.
+
+Wrong first-aid kills:
+- Tilting the head of a seizure patient can block the airway
+- Applying toothpaste or oil on a burn worsens tissue damage
+- Moving a person with a spinal injury can cause paralysis
+- Improper CPR technique is ineffective and can fracture ribs
+
+And when internet IS available — no single tool exists that
+combines real-time AI diagnosis, live ambulance tracking,
+telemedicine, medicine identification, and multilingual
+support in one place for the Indian rural user.
+
+What problem are we solving?
+Preventable deaths and health deterioration caused by incorrect,
+absent, or inaccessible medical guidance — both in emergencies
+and in everyday health management — across rural and semi-urban India.
+
+Who is facing this problem?
+Rural and semi-urban families across India — over 800 million
+people — who lack access to trained medical help within the
+first critical minutes of an emergency, and who have no
+reliable tool for everyday health decisions either.
+
+Why is this problem important?
+India records over 1.5 lakh accidental deaths annually
+(NCRB 2022). A significant portion occur in the critical
+window before ambulance arrival. Most are preventable with
+correct first-aid. Beyond emergencies, 65% of India's
+population has no access to a doctor within 5km.
+
+================================================================
+02. TARGET USER
+================================================================
+
+Primary User (Emergency Mode — Offline):
+Adult family member or bystander (age 20-55) in a rural or
+semi-urban Indian household. Basic Android smartphone user.
+Speaks Hindi, Kannada, Tamil, Telugu, Marathi, or Bengali.
+Has no medical training. May have no internet at the moment
+of crisis.
+
+Secondary User (Smart Mode — Online):
+Semi-urban or urban Indian with intermittent internet —
+uses JeevanAid for everyday health queries, family health
+records, medicine identification, and doctor consultations.
+
+Challenges They Face:
+- No first-aid training or access to any training
+- Language barrier — most health tools are English-only
+- No internet in emergency moments (rural connectivity gaps)
+- Panic — no structured guidance on what to do first
+- Everyday health decisions made without doctor access
+- No way to identify medicines or track family health history
+
+================================================================
+03. PAIN POINTS
+================================================================
+
+Biggest frustration:
+"I didn't know what to do and I just watched." — the
+helplessness of untrained bystanders in a crisis.
+
+What is currently not working:
+- 108 connects but operator cannot guide complex procedures
+- YouTube requires internet + search + correct language match
+- Existing first-aid apps are English-only and text-heavy
+- No single app combines emergency + everyday health needs
+- Telemedicine apps are too complex for rural users
+- No medicine identifier works in Indian regional languages
+
+Why existing solutions are failing:
+- Designed for urban, educated, English-speaking users
+- Require stable internet — useless in actual emergencies
+- Fragmented — need 5 different apps for 5 different needs
+- No audio guidance for low-literacy users
+
+================================================================
+04. DESIRED OUTCOME (GAINS)
+================================================================
+
+Offline: User follows guided first-aid steps and keeps the
+patient stable until the ambulance arrives. Family feels
+equipped and confident — not helpless.
+
+Online: User gets AI-powered diagnosis, connects with a real
+doctor, tracks the ambulance live, identifies medicines, and
+manages family health records — all in one app, in their language.
+
+What does success look like?
+"I knew exactly what to do. I could see the ambulance coming.
+The doctor told me what to do next. The patient survived."
+
+================================================================
+05. CURRENT SCENARIO
+================================================================
+
+How is this problem solved today?
+- Call 108 and wait — no active guidance during the wait
+- Call a relative who may or may not know what to do
+- Search YouTube (needs internet, time, and luck)
+- Use fragmented apps — maps here, doctors elsewhere,
+  no actual first-aid in regional languages anywhere
+- Most common outcome: do nothing and panic
+
+Limitations of current tools:
+- All assume internet availability
+- None localized, visual, or designed for panic
+- No structured step-by-step guidance in regional languages
+- Everyday health tools are too complex or English-only
+- No single integrated solution for rural India exists
+
+================================================================
+06. YOUR IDEA — JeevanAid (Hybrid PWA)
+================================================================
+
+JeevanAid is a Hybrid Progressive Web App. It works completely
+offline as a full emergency first-aid guide. When internet is
+available, it unlocks a powerful AI-driven health platform.
+One install via browser link. No app store needed.
+
+------------------------------------------------------------
+OFFLINE MODE — Always Available Core
+------------------------------------------------------------
+
+1. EMERGENCY FIRST-AID GUIDE
+   Large icon-based emergency selector for 12 emergencies:
+   Snake Bite | Seizure | Choking | Burns | Heart Attack |
+   Drowning | Fracture | Severe Bleeding | Unconsciousness |
+   Allergic Reaction | Electric Shock | Heat Stroke
+
+   Per emergency: step-by-step illustrated guide, audio
+   narration in regional language, looping video clips for
+   key procedures, bold DO NOT warning boxes for myths.
+
+2. LOCAL LANGUAGE SUPPORT (OFFLINE)
+   Hindi | Kannada | Tamil | Telugu | Marathi | Bengali
+   All content pre-cached. Zero internet needed.
+
+3. ONE-TAP 108 EMERGENCY CALL
+   Persistent sticky button on every single screen.
+
+4. NEAREST CLINIC FINDER (OFFLINE)
+   Cached OpenStreetMap tiles + pre-loaded PHC/hospital
+   database. Nearest 3 facilities with distance + call.
+
+5. BASIC SYMPTOM TRIAGE (OFFLINE)
+   Yes/No question flow → urgency categorization →
+   routes to correct first-aid module or 108 call.
+
+6. CAREGIVER DAILY GUIDE (OFFLINE)
+   Home management for diabetes, hypertension, TB, cardiac
+   patients. Medication reminders + visual pill identifiers.
+
+7. ASHA WORKER MODE (OFFLINE)
+   Patient visit logging + immunization tracking.
+   Replaces paper registers entirely.
+
+------------------------------------------------------------
+ONLINE MODE — AI-Powered Smart Features
+------------------------------------------------------------
+
+8. AI SYMPTOM DIAGNOSIS
+   Describe symptoms in any Indian language → AI returns
+   likely condition + urgency level + immediate action.
+   Clean card UI with color-coded urgency (red/amber/green).
+
+9. LIVE 108 AMBULANCE TRACKER
+   After calling 108 — real-time ambulance location on map
+   + live ETA countdown. Animated pulse indicator on map.
+   "Help is 8 minutes away." Eliminates panic of not knowing.
+
+10. TELEMEDICINE — DOCTOR ON CALL
+    One-tap video or chat consult with verified MBBS doctor.
+    Clean booking card: symptom input + language preference.
+    Live queue position shown. Callback option available.
+
+11. AI MEDICINE IDENTIFIER
+    Photo of any pill or packaging → AI instantly identifies
+    medicine name, dosage, purpose, side effects in regional
+    language. Critical for caregivers managing elderly patients.
+
+12. LIVE HOSPITAL BED AVAILABILITY
+    Nearest hospitals with real-time emergency bed status.
+    Color coded — Green (available) / Red (full).
+    Integrates with NHA Ayushman Bharat state health APIs.
+
+13. MULTILINGUAL AI HEALTH CHATBOT
+    Full conversational AI for any health question in any
+    Indian language. Persistent chat history. Escalates
+    to 108 automatically if life-threatening situation
+    detected in conversation.
+
+14. FAMILY HEALTH RECORDS VAULT
+    Blood group, allergies, conditions, prescriptions per
+    family member. One-tap PDF share with emergency doctors.
+    Syncs to secure cloud when online.
+
+15. COMMUNITY DISEASE ALERT SYSTEM
+    Detects local outbreak patterns from crowdsourced data
+    + government feeds. Push notification to nearby users
+    with prevention steps in local language.
+
+16. POST-EMERGENCY FOLLOW-UP
+    48-hour recovery guide after any emergency: medication
+    reminders, warning signs, follow-up clinic locator,
+    daily check-in prompts.
+
+------------------------------------------------------------
+What makes JeevanAid different?
+------------------------------------------------------------
+- Only hybrid PWA combining full offline emergency core +
+  online AI health platform for Indian users in one app
+- Works with zero internet — not degraded, fully functional
+- Seamlessly upgrades when internet returns — no reload
+- Audio-first for low-literacy users
+- DO NOT warnings prevent harm from dangerous myths
+- No app store needed — share as WhatsApp link instantly
+
+================================================================
+07. BASIC WORKING
+================================================================
+
+OFFLINE FLOW:
+1. User opens JeevanAid link in browser → installs as PWA
+2. Selects language on first launch (saved permanently)
+3. All first-aid content, maps, audio, video cached locally
+4. Emergency → tap type → visual + audio guide instantly
+5. 108 button persistent on every screen
+6. Nearest clinic shown from cached offline map
+
+ONLINE FLOW:
+1. App detects internet → Online Mode badge activates
+2. Home screen upgrades with AI Dashboard cards:
+   AI Diagnosis | Doctor Call | Medicine Scan |
+   Live Ambulance | Hospital Beds | Health Vault
+3. All online features accessible in 1-2 taps from home
+4. Family health vault syncs to encrypted cloud
+5. AI chatbot available for any health conversation
+
+Technology Stack (high-level):
+- Frontend: HTML, CSS, JavaScript PWA + Service Worker
+- Offline storage: Cache API + IndexedDB
+- AI features: LLM API for diagnosis + multilingual chat
+- Maps: Leaflet.js (offline tiles + online live tracking)
+- Medicine ID: Computer Vision API (online only)
+- Telemedicine: WebRTC for video consult
+- Backend: Node.js + Firebase for online features
+- Kiro: Mandatory development environment (Track 1)
+
+================================================================
+08. IMPACT
+================================================================
+
+Who will benefit?
+- 800M+ rural and semi-urban Indians with smartphones
+- ASHA workers and community health volunteers
+- Families managing elderly or chronically ill members
+- Urban users wanting multilingual AI health assistant
+- Travelers in low-connectivity areas
+
+How big is the impact?
+- 1.5 lakh+ accidental deaths per year in India (NCRB 2022)
+- 65% of India has no doctor within 5km
+- 10% reduction in preventable deaths = 15,000 lives/year
+- Scalable across 28 states, 22 languages, zero app store
+
+Is it scalable?
+Yes. PWA means no app store barrier. Shareable via WhatsApp
+link. Adoptable by NHM, 108 Arogya Kavach, state health
+departments, PHC networks, ASHA programs with zero infra
+changes. Online AI features scale via cloud APIs.
+
+================================================================
+09. CHALLENGES
+================================================================
+
+Building challenges:
+- Medical accuracy: Steps must be validated by certified doctor
+- True offline AI not feasible: mitigated by rule-based offline
+  triage + cloud AI for online mode
+- Audio/video content in 6+ languages (post-hackathon effort)
+- UX must be panic-proof and icon-first for low-literacy users
+
+Risks:
+- Liability if incorrect guidance causes harm
+  (mitigation: doctor validation, clear disclaimers,
+  certified health organization partnerships)
+- API costs for AI features at scale
+  (mitigation: freemium + government/NGO partnerships)
+- Offline map accuracy depends on cache recency
+
+================================================================
+10. FINAL PITCH LINE
+================================================================
+
+"JeevanAid — offline when you need it most, intelligent when
+you have signal. One app. Every emergency. Every Indian."
+
+================================================================
+BONUS — JUDGE TRICK SECTION
+================================================================
+
+"Why should your idea be selected over the others?"
+
+"Every other health app picks a lane — either offline OR
+smart, either emergency OR everyday, either rural OR urban.
+JeevanAid picks all of them. Offline, it's a lifesaver.
+Online, it's a doctor, a pharmacist, and an ambulance tracker
+in one. We're not building another health app — we're building
+India's first emergency-to-recovery platform that actually
+works for the 800 million people every other app forgot."
+
+================================================================
+END OF DOCUMENT — v2 HYBRID EDITION
+Vibeathon 2026 | Track 1: Open Innovation | Domain: Healthcare
+================================================================
