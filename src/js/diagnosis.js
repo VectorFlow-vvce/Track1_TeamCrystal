@@ -16,7 +16,8 @@ const diagnosis = {
             
             micBtn.addEventListener('click', () => {
                 micBtn.classList.add('bg-red-100', 'text-red-500', 'animate-pulse');
-                recognition.lang = app.state.language === 'hi' ? 'hi-IN' : 'en-IN';
+                const voiceLangs = { hi: 'hi-IN', kn: 'kn-IN', en: 'en-IN' };
+                recognition.lang = voiceLangs[app.state.language] || 'en-IN';
                 recognition.start();
             });
             

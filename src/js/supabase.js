@@ -177,7 +177,8 @@ async function askGemini(prompt, systemInstruction) {
 }
 
 async function analyzeSymptoms(symptoms, language) {
-  const lang = language === 'hi' ? 'Hindi' : 'English';
+  const langMap = { hi: 'Hindi', kn: 'Kannada', en: 'English' };
+  const lang = langMap[language] || 'English';
   const systemInstruction = `You are a medical first-aid AI assistant for the JeevanAid app in India. 
 Analyze the user's symptoms and respond in ${lang}. 
 Return JSON with this exact structure:

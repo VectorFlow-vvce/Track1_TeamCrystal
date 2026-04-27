@@ -117,15 +117,18 @@
                 <p class="text-secondary">Emergency guidance in your language</p>
             </section>
             
-            <div class="grid grid-cols-2 gap-5" id="language-grid">
-                <!-- Populated by JS -->
-                <button class="lang-option flex flex-col items-center justify-center h-32 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="en">
+            <div class="grid grid-cols-3 gap-4" id="language-grid">
+                <button class="lang-option flex flex-col items-center justify-center h-28 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="en">
                     <span class="text-2xl mb-2">English</span>
-                    <span class="font-label-caps text-secondary">English</span>
+                    <span class="font-label-caps text-secondary text-[11px]">English</span>
                 </button>
-                <button class="lang-option flex flex-col items-center justify-center h-32 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="hi">
+                <button class="lang-option flex flex-col items-center justify-center h-28 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="hi">
                     <span class="text-2xl mb-2">हिन्दी</span>
-                    <span class="font-label-caps text-secondary">Hindi</span>
+                    <span class="font-label-caps text-secondary text-[11px]">Hindi</span>
+                </button>
+                <button class="lang-option flex flex-col items-center justify-center h-28 rounded-[20px] bg-white border-2 border-transparent ambient-shadow transition-all active:scale-95 group" data-lang="kn">
+                    <span class="text-2xl mb-2">ಕನ್ನಡ</span>
+                    <span class="font-label-caps text-secondary text-[11px]">Kannada</span>
                 </button>
             </div>
             
@@ -242,7 +245,7 @@
         </div>
 
         <!-- AI DIAGNOSIS VIEW -->
-        <div id="view-ai-diagnosis" class="page page-hidden w-full max-w-2xl mx-auto px-6 py-6 online-only">
+        <div id="view-ai-diagnosis" class="page page-hidden w-full max-w-2xl mx-auto px-6 py-6">
             <section class="flex flex-col items-center text-center space-y-4 mb-8">
                 <div class="w-20 h-20 rounded-full bg-[#EEF4FF] flex items-center justify-center">
                     <span class="material-symbols-outlined text-[#4F8EF7] text-4xl" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
@@ -307,7 +310,7 @@
         </div>
 
         <!-- AMBULANCE TRACKER VIEW -->
-        <div id="view-tracker" class="page page-hidden w-full relative h-[calc(100vh-180px)] online-only">
+        <div id="view-tracker" class="page page-hidden w-full relative h-[calc(100vh-180px)]">
             <!-- Map Container -->
             <div id="tracker-map" class="absolute inset-0 z-0"></div>
             

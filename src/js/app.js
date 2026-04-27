@@ -349,7 +349,8 @@ const app = {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(stepText);
-                utterance.lang = lang === 'hi' ? 'hi-IN' : 'en-IN';
+                const langCodes = { hi: 'hi-IN', kn: 'kn-IN', en: 'en-IN' };
+                utterance.lang = langCodes[lang] || 'en-IN';
                 window.speechSynthesis.speak(utterance);
             }
         };
